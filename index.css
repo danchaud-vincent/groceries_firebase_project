@@ -1,0 +1,66 @@
+body{
+    padding: 0;
+    margin: 0;
+    background: #f4a259;
+}
+
+.main{
+    max-width: 302px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column; 
+}
+
+.logo-app{
+    width: 150px;
+    margin: 50px auto 0px auto;
+}
+
+input {
+    padding: 10px 10px;
+    border: none;
+    border-radius: 10px;
+    background: #f2e8cf;
+    outline: none;
+    box-shadow: 1px 1px 5px black;
+    margin: 20px 0;
+}
+
+button{
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px black;
+    color: white;
+    font-weight: bold;
+    background: #5b8e7d;
+}
+
+.detele-btns{
+    display: flex;
+    justify-content: space-around;
+
+    margin: 20px 0;
+}
+
+.detele-btns button{
+    flex-grow: 1;
+    background: #bc4b51;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+ul li{
+    border: 2px solid black;
+    
+    padding: 10px 20px;
+    
+    
+}
