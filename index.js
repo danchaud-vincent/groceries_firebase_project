@@ -10,7 +10,7 @@ const DATABASE_URL = "https://groceries-app-bcf2e-default-rtdb.europe-west1.fire
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"
-import { getDatabase, ref, push, onValue, remove} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove, update , child, get } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js"
     
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -25,18 +25,90 @@ const database = getDatabase(app)
 const refDatabase = ref(database, "groceries")
 
 
+onValue(refDatabase, function(snapshot){
+
+    
+    if (snapshot.exists()){
+
+        const snapshotDict = snapshot.val()
+
+        // render
+        render(Object.values(snapshotDict))
+    }
+  
+})
+
+
 
 // add button event
 addBtn.addEventListener("click", function(){
-    
-    // push into the database
-    push(refDatabase, inputEl.value)
 
-    // clear input value
-    inputEl.value = ""
+    if (inputEl.value){
+        // push into the database
+        push(refDatabase, inputEl.value)
+
+        // clear input value
+        inputEl.value = ""
+    }
 })
+
 
 // delete all button event
 deleteAllBtn.addEventListener("click", function(){
+
+    // remove all in database
     remove(refDatabase)
+    
+    // clear ul
+    ulEl.innerHTML = ""
+
 })
+
+// remove last item button event
+removeLastBtn.addEventListener("click", function(){
+
+    // get the values
+    get(refDatabase).then((snapshot) => {
+        if (snapshot.exists()) {
+            // get data dict
+            const snapshotDict = snapshot.val()
+            const dataArray = Object.entries(snapshotDict)
+
+            // remove last items by adding null as value
+            dataArray[dataArray.length-1][1] = null
+
+            // create new object
+            const updates = Object.fromEntries(dataArray)
+            
+            // update the database
+            update(refDatabase, updates)
+
+            // render the values
+            render(Object.values(updates))
+
+        } else {
+            console.log("No data available");
+        }
+      }).catch((error) => {
+            console.error(error);
+    });
+
+   
+})
+
+
+function render(arr){
+
+    let ulDOM = ""
+
+    for (let i=0; i<arr.length; i++){
+
+        // the value can be null (when we remove an item we set the value to null in the dabase)
+        if (arr[i]){
+            ulDOM += `<li>${arr[i]}</li>`
+        }
+        
+    }
+
+    ulEl.innerHTML = ulDOM
+}
