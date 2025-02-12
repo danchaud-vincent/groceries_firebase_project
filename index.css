@@ -2,6 +2,8 @@ body{
     padding: 0;
     margin: 0;
     background: #f4a259;
+
+    font-family: "Rubik", serif;
 }
 
 .main{
@@ -35,12 +37,13 @@ button{
     color: white;
     font-weight: bold;
     background: #5b8e7d;
+    font-family: "Rubik", serif;
 }
 
 .detele-btns{
     display: flex;
     justify-content: space-around;
-
+    gap: 10px;
     margin: 20px 0;
 }
 
@@ -54,13 +57,17 @@ ul{
     padding: 0;
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
 
 }
 
 ul li{
-    border: 2px solid black;
-    
     padding: 10px 20px;
+    text-align: center;
     
-    
+    background: #f2e8cf;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px black;
+
+    flex-grow: 1;
 }
