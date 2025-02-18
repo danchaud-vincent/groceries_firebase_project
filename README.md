@@ -1,3 +1,13 @@
 # GROCERIES FIREBASE APP
 
-Small project about building a mini app using firebase, html, css and javascript.
+## SCRIMBA PROJECT
+
+Project based on the The Frontend Developer Career Path.
+I developped a small groceries list app using firebase. 
+
+### TOOLS
+
+- HTML
+- CSS
+- JAVASCRIPT
+- FIREBASE
